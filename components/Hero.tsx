@@ -90,7 +90,7 @@ export default function Hero() {
             <div className="glass-card rounded-2xl p-6 border border-surface-border space-y-5">
               <div className="flex items-center justify-between pb-3 border-b border-surface-border">
                 <span className="font-display font-bold text-sm text-text-primary">Engineering Track Record</span>
-                <span className="text-[11px] font-mono text-accent bg-accent/10 px-2 py-0.5 rounded border border-accent/20">VIT &apos;26</span>
+                <span className="text-[11px] font-mono text-accent bg-accent/10 px-2 py-0.5 rounded border border-accent/20">VIT &apos;28</span>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
