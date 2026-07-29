@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Typography ─────────────────────────────────────── */
+  --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-mono: ui-monospace, "Menlo", "Cascadia Code", "Fira Code", monospace;
+
+  /* ── Color Tokens ───────────────────────────────────── */
+  --color-accent: #10b981;
+  --color-accent-cyan: #06b6d4;
+  --color-accent-light: #34d399;
+  --color-accent-dark: #059669;
+
+  /* ── Dark Surfaces ─────────────────────────────────── */
+  --color-surface: #090d14;
+  --color-surface-elevated: #111827;
+  --color-surface-border: #1e293b;
+  --color-surface-muted: #151d2a;
+
+  /* ── Text Colors ───────────────────────────────────── */
+  --color-text-primary: #f3f4f6;
+  --color-text-secondary: #9ca3af;
+  --color-text-muted: #6b7280;
+
+  /* ── Marquee Animations ─────────────────────────────── */
+  --animate-marquee-left: marquee-left 45s linear infinite;
+  --animate-marquee-right: marquee-right 47s linear infinite;
+
+  @keyframes marquee-left {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes marquee-right {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+  }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* ─── Base ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-display);
+}
+
+/* ─── Light Mode ─────────────────────────────────────────── */
+.light, [data-theme="light"] {
+  --color-surface: #f8fafc;
+  --color-surface-elevated: #ffffff;
+  --color-surface-border: #e2e8f0;
+  --color-surface-muted: #f1f5f9;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-surface); }
+::-webkit-scrollbar-thumb { background: var(--color-surface-border); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent-dark); }
+
+/* ─── Focus ──────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ─── Cards — NO backdrop-filter (major perf win) ───────── */
+.glass-card {
+  background: rgba(17, 24, 39, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.light .glass-card,
+[data-theme="light"] .glass-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.glass-card:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 20px rgba(16,185,129,0.08);
+}
+
+/* ─── Gradient Text ──────────────────────────────────────── */
+.accent-glow-text {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Tech Grid Background ───────────────────────────────── */
+.tech-grid {
+  background-image: radial-gradient(rgba(16,185,129,0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ─── Marquee ────────────────────────────────────────────── */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.marquee-track-left  { animation: var(--animate-marquee-left); }
+.marquee-track-right { animation: var(--animate-marquee-right); }
+.marquee-wrapper:hover .marquee-track { animation-play-state: paused; }
+
+/* ─── CSS-only section reveal ────────────────────────────── */
+.section-reveal {
+  animation: fade-up 0.5s ease both;
+}
+
+/* ─── Utility: Accent gradient line ─────────────────────── */
+.accent-bar {
+  width: 3.5rem;
+  height: 3px;
+  background: linear-gradient(to right, var(--color-accent), var(--color-accent-cyan));
+  border-radius: 9999px;
+  opacity: 0.8;
+}
