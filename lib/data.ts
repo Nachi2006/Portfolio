@@ -13,8 +13,6 @@ export interface Project {
   tech: string[];
   link?: string;
   github?: string;
-  architecture: string[];
-  codeSnippet: string;
 }
 
 export interface Experience {
@@ -31,6 +29,14 @@ export interface Certification {
   name: string;
   issuer: string;
   date: string;
+  link?: string;
+}
+
+export interface Patent {
+  title: string;
+  status: string;
+  date?: string;
+  link?: string;
 }
 
 export interface SkillCategory {
@@ -97,34 +103,6 @@ export const projects: Project[] = [
     result: "96.4% Accuracy on Unseen Test Sequences",
     tech: ["Python", "PyTorch", "YOLO", "Bi-LSTM", "GRU", "OpenCV", "Streamlit"],
     github: "https://github.com/Nachi2006",
-    architecture: [
-      "Input Video Stream → Frame Extraction",
-      "YOLO Face Detection & Normalization",
-      "ResNet Feature Embeddings Extraction",
-      "Bi-LSTM + GRU Recurrent Sequence Encoder",
-      "Classification Head → Real / Synthesized Score",
-    ],
-    codeSnippet: `import torch
-import torch.nn as nn
-
-class DeepDetectorHybrid(nn.Module):
-    def __init__(self, feature_dim=512, hidden_dim=256):
-        super().__init__()
-        self.bilstm = nn.LSTM(feature_dim, hidden_dim, batch_first=True, bidirectional=True)
-        self.gru = nn.GRU(hidden_dim * 2, hidden_dim, batch_first=True)
-        self.fc = nn.Sequential(
-            nn.Linear(hidden_dim, 64),
-            nn.ReLU(),
-            nn.Dropout(0.3),
-            nn.Linear(64, 1),
-            nn.Sigmoid()
-        )
-        
-    def forward(self, x): # [batch, seq_len, 512]
-        lstm_out, _ = self.bilstm(x)
-        gru_out, (hn, _) = self.gru(lstm_out)
-        prob = self.fc(hn[-1])
-        return prob`,
   },
   {
     id: 2,
@@ -138,31 +116,6 @@ class DeepDetectorHybrid(nn.Module):
     tech: ["Python", "TensorFlow", "YOLO", "OpenCV", "Pigeon-Annotator", "Streamlit"],
     link: "https://colab.research.google.com/drive/12WJP994a83k_YuD1RLG9OZX6tEmmyZGe?usp=sharing",
     github: "https://github.com/Nachi2006",
-    architecture: [
-      "Webcam / Video Ingestion",
-      "Bounding Box Face Localization (YOLO)",
-      "Multi-label Emotion Feature Classification",
-      "Smoothing & Temporal Majority Vote",
-      "Safety Alert Notification Trigger",
-    ],
-    codeSnippet: `import cv2
-import numpy as np
-
-def detect_child_emotions(frame, yolo_model, conf_thresh=0.75):
-    h, w, _ = frame.shape
-    blob = cv2.dnn.blobFromImage(frame, 1/255.0, (416, 416), swapRB=True, crop=False)
-    yolo_model.setInput(blob)
-    layer_outputs = yolo_model.forward(yolo_model.getUnconnectedOutLayersNames())
-    
-    detections = []
-    for output in layer_outputs:
-        for detection in output:
-            scores = detection[5:]
-            class_id = np.argmax(scores)
-            confidence = scores[class_id]
-            if confidence > conf_thresh:
-                detections.append({"class_id": class_id, "score": float(confidence)})
-    return detections`,
   },
   {
     id: 3,
@@ -175,26 +128,6 @@ def detect_child_emotions(frame, yolo_model, conf_thresh=0.75):
     result: "Sub-2s Query Latency on Local CPU",
     tech: ["Python", "Ollama", "PyTorch", "RAG", "Stable Diffusion", "Streamlit"],
     github: "https://github.com/Nachi2006/C2C-LeDragons-EasyLLM",
-    architecture: [
-      "PDF / Text Document Ingestion",
-      "Recursive Token Chunking & Local Embeddings",
-      "ChromaDB / Vector Search Indexing",
-      "Context-Injected Llama-3 Prompt Construction",
-      "Local Ollama Inference Engine Output",
-    ],
-    codeSnippet: `from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import Chroma
-
-def build_offline_rag_index(documents, embedding_fn):
-    splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
-    chunks = splitter.split_documents(documents)
-    
-    vectorstore = Chroma.from_documents(
-        documents=chunks,
-        embedding=embedding_fn,
-        persist_directory="./chroma_db"
-    )
-    return vectorstore.as_retriever(search_kwargs={"k": 3})`,
   },
   {
     id: 4,
@@ -207,27 +140,6 @@ def build_offline_rag_index(documents, embedding_fn):
     result: "~70% Infrastructure Cost Reduction",
     tech: ["Grafana", "VictoriaMetrics", "MQTT", "Python", "Docker", "Time-Series DB"],
     github: "https://github.com/Nachi2006",
-    architecture: [
-      "Industrial Sensors → MQTT Broker Telemetry",
-      "Python Consumer with Regex Stream Parser",
-      "VictoriaMetrics Time-Series Storage Engine",
-      "Dynamic CSV Metadata Enrichment Join",
-      "Grafana Real-Time Dashboard Panels",
-    ],
-    codeSnippet: `import pandas as pd
-
-def process_mqtt_telemetry(sensor_stream, metadata_df):
-    parsed_stream = sensor_stream.extract(r'(?P<device_id>\\w+):(?P<val>\\d+\\.\\d+)')
-    parsed_stream['timestamp'] = pd.to_datetime(parsed_stream['timestamp'])
-    
-    # Partitioned outer join with asset registry
-    enriched_df = pd.merge(
-        parsed_stream,
-        metadata_df,
-        on='device_id',
-        how='left'
-    )
-    return enriched_df.dropna(subset=['val'])`,
   },
   {
     id: 5,
@@ -240,28 +152,22 @@ def process_mqtt_telemetry(sensor_stream, metadata_df):
     result: "Unified Search across 10,000+ Mixed PDFs & Tables",
     tech: ["Python", "Tesseract OCR", "PyPDF2", "SQL", "Streamlit", "RAG", "NLP"],
     github: "https://github.com/Nachi2006",
-    architecture: [
-      "Scanned PDF / Image Ingestion",
-      "Tesseract OCR & PyPDF2 Preprocessing",
-      "Schema Mapping & Table Extraction",
-      "NL-to-SQL Prompt Transformer",
-      "RAG Context Search + SQL Execution",
-    ],
-    codeSnippet: `import pytesseract
-from PIL import Image
-
-def process_document_to_sql(file_path, db_schema):
-    if file_path.endswith('.pdf'):
-        text = extract_pypdf2_text(file_path)
-    else:
-        text = pytesseract.image_to_string(Image.open(file_path))
-        
-    sql_prompt = f"Given schema: {db_schema}\\nQuestion: {text}\\nGenerate standard SQL query:"
-    return execute_llm_query_generation(sql_prompt)`,
   },
 ];
 
 export const experiences: Experience[] = [
+  {
+    role: "Research Intern",
+    org: "NIT Trichy",
+    location: "Tiruchirappalli, India",
+    period: "May 2026 – Present",
+    metricsBadge: "AI Safety",
+    bullets: [
+      "Researching Mechanistic Interpretability on Small Language Models (SLMs) and Attention Head Tuning to improve AI safety.",
+      "Advised and guided by Dr. Santhanavijayan (NIT Trichy).",
+    ],
+    type: "internship",
+  },
   {
     role: "Summer Intern",
     org: "Aspire Systems",
@@ -315,6 +221,14 @@ export const certifications: Certification[] = [
     name: "Oracle Certified Data Scientist",
     issuer: "Oracle Corporation",
     date: "Oct 2025",
+    link: "https://education.oracle.com/",
+  },
+];
+
+export const patents: Patent[] = [
+  {
+    title: "Distributed Edge-Based Wildlife Monitoring System With Spatial Data Obfuscation And Asynchronous Synchronization",
+    status: "Published",
   },
 ];
 

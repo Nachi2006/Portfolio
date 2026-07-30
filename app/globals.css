@@ -2,26 +2,26 @@
 
 @theme {
   /* ── Typography ─────────────────────────────────────── */
-  --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
-  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
-  --font-mono: ui-monospace, "Menlo", "Cascadia Code", "Fira Code", monospace;
+  --font-sans: var(--font-jetbrains-mono), system-ui, sans-serif;
+  --font-display: var(--font-jetbrains-mono), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "Menlo", "Cascadia Code", "Fira Code", monospace;
 
-  /* ── Color Tokens ───────────────────────────────────── */
-  --color-accent: #10b981;
-  --color-accent-cyan: #06b6d4;
-  --color-accent-light: #34d399;
-  --color-accent-dark: #059669;
+  /* ── Color Tokens (Monochrome) ────────────────────── */
+  --color-accent: #ffffff;
+  --color-accent-cyan: #e5e5e5;
+  --color-accent-light: #f5f5f5;
+  --color-accent-dark: #a3a3a3;
 
-  /* ── Dark Surfaces ─────────────────────────────────── */
-  --color-surface: #090d14;
-  --color-surface-elevated: #111827;
-  --color-surface-border: #1e293b;
-  --color-surface-muted: #151d2a;
+  /* ── Dark Surfaces (Jet Black) ────────────────────── */
+  --color-surface: #000000;
+  --color-surface-elevated: #0a0a0a;
+  --color-surface-border: #262626;
+  --color-surface-muted: #171717;
 
   /* ── Text Colors ───────────────────────────────────── */
-  --color-text-primary: #f3f4f6;
-  --color-text-secondary: #9ca3af;
-  --color-text-muted: #6b7280;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a3a3a3;
+  --color-text-muted: #525252;
 
   /* ── Marquee Animations ─────────────────────────────── */
   --animate-marquee-left: marquee-left 45s linear infinite;
@@ -88,35 +88,30 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 /* ─── Cards — NO backdrop-filter (major perf win) ───────── */
 .glass-card {
-  background: rgba(17, 24, 39, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-surface-border);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.2s ease;
 }
 
 .light .glass-card,
 [data-theme="light"] .glass-card {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
 }
 
 .glass-card:hover {
-  border-color: rgba(16, 185, 129, 0.3);
-  box-shadow: 0 4px 20px rgba(16,185,129,0.08);
+  border-color: #525252;
+  box-shadow: 0 0 20px rgba(255,255,255,0.03);
 }
 
 /* ─── Gradient Text ──────────────────────────────────────── */
 .accent-glow-text {
-  background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #06b6d4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-accent);
 }
 
 /* ─── Tech Grid Background ───────────────────────────────── */
 .tech-grid {
-  background-image: radial-gradient(rgba(16,185,129,0.05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(37,99,235,0.05) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
@@ -139,7 +134,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
 .accent-bar {
   width: 3.5rem;
   height: 3px;
-  background: linear-gradient(to right, var(--color-accent), var(--color-accent-cyan));
+  background: var(--color-accent);
   border-radius: 9999px;
   opacity: 0.8;
 }

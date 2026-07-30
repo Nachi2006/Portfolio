@@ -13,9 +13,9 @@ export default function Projects() {
           label="Selected Engineering Work"
           title="Featured Projects & ML Pipelines"
         />
-        <div className="space-y-5">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          {projects.map((project, idx) => (
+            <ProjectCard key={project.id} project={project} index={idx} />
           ))}
         </div>
       </div>
