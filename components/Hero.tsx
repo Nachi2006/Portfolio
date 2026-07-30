@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Copy, Check, Terminal, ShieldCheck, Database, Layers, Sparkles, ArrowRight } from "lucide-react";
+import { Copy, Check, Terminal, ShieldCheck, Database, Layers, Sparkles, ArrowRight, MapPin } from "lucide-react";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { siteConfig } from "@/lib/data";
 import { motion } from "framer-motion";
@@ -48,7 +48,7 @@ export default function Hero() {
                 <Terminal size={14} className="text-text-primary" />
                 <span>ml-engineer ~</span>
                 <span className="text-text-primary font-semibold">vit-vellore</span>
-                <span className="w-1.5 h-3 bg-white animate-pulse ml-1" />
+                <span className="w-1.5 h-3 bg-accent animate-pulse ml-1" />
               </div>
               
               <h1 className="text-5xl sm:text-6xl font-bold font-display tracking-tight leading-[1.1] text-text-primary">
@@ -60,7 +60,7 @@ export default function Hero() {
             <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <a
                 href="#projects"
-                className="px-6 py-3 rounded-xl text-sm font-bold font-mono bg-white text-black hover:bg-gray-200 transition-colors flex items-center gap-2"
+                className="px-6 py-3 rounded-xl text-sm font-bold font-mono bg-accent text-surface hover:bg-surface-border transition-colors flex items-center gap-2"
               >
                 View Work <ArrowRight size={16} />
               </a>
@@ -68,7 +68,7 @@ export default function Hero() {
                 href={siteConfig.resume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 rounded-xl text-sm font-bold font-mono border border-surface-border text-text-primary hover:border-white transition-colors"
+                className="px-6 py-3 rounded-xl text-sm font-bold font-mono border border-surface-border text-text-primary hover:border-accent transition-colors"
               >
                 Resume PDF ↗
               </a>
@@ -86,7 +86,7 @@ export default function Hero() {
           {/* Location & Status */}
           <motion.div variants={itemVariants} className="glass-card rounded-2xl p-6 flex flex-col justify-center items-center text-center gap-3">
             <div className="w-10 h-10 rounded-full border border-surface-border flex items-center justify-center bg-surface-muted">
-              📍
+              <MapPin size={18} className="text-accent" />
             </div>
             <div className="font-mono text-xs text-text-secondary">{siteConfig.location}</div>
           </motion.div>
@@ -94,10 +94,10 @@ export default function Hero() {
           {/* Email Action */}
           <motion.div 
             variants={itemVariants} 
-            className="glass-card rounded-2xl p-6 flex flex-col justify-center items-center cursor-pointer hover:border-white transition-colors group"
+            className="glass-card rounded-2xl p-6 flex flex-col justify-center items-center cursor-pointer hover:border-accent transition-colors group"
             onClick={copyEmail}
           >
-            <div className="w-10 h-10 rounded-full border border-surface-border flex items-center justify-center bg-surface-muted group-hover:bg-white group-hover:text-black transition-colors">
+            <div className="w-10 h-10 rounded-full border border-surface-border flex items-center justify-center bg-surface-muted group-hover:bg-accent group-hover:text-surface transition-colors">
               {copied ? <Check size={16} /> : <Copy size={16} />}
             </div>
             <div className="font-mono text-xs font-semibold mt-3 text-text-primary">

@@ -36,7 +36,7 @@ export interface Patent {
   title: string;
   status: string;
   date?: string;
-  link?: string;
+  applicationNumber?: string;
 }
 
 export interface SkillCategory {
@@ -229,7 +229,7 @@ export const patents: Patent[] = [
   {
     title: "Distributed Edge-Based Wildlife Monitoring System With Spatial Data Obfuscation And Asynchronous Synchronization",
     status: "Published",
-    link: "#",
+    applicationNumber: "Application No. 202641051548",
   },
 ];
 
