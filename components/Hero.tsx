@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Copy, Check, Terminal, ShieldCheck, Database, Layers, Sparkles, ArrowRight, MapPin } from "lucide-react";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { siteConfig } from "@/lib/data";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
@@ -15,7 +15,7 @@ export default function Hero() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -25,7 +25,7 @@ export default function Hero() {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
   };
