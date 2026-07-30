@@ -28,11 +28,6 @@ export default function About() {
             <div className="space-y-4 text-text-secondary text-base leading-relaxed">
               {aboutBio.map((para, idx) => <p key={idx}>{para}</p>)}
             </div>
-
-            <div className="p-4 rounded-xl bg-surface-elevated border border-surface-border flex items-center justify-between text-xs font-mono">
-              <span className="text-text-muted">B.Tech IT @ VIT Vellore</span>
-              <span className="text-white font-bold">CGPA: 9.00 / 10.0</span>
-            </div>
           </div>
 
           {/* Skills Grid — interactive, isolated as client island */}

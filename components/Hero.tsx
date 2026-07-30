@@ -113,10 +113,10 @@ export default function Hero() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { icon: <ShieldCheck size={14} />, label: "DeepDetector",  value: "96.4%", sub: "Bi-LSTM accuracy" },
-                { icon: <Database size={14} />,    label: "Aspire Systems", value: "~70%",  sub: "Cost reduction" },
+                { icon: <ShieldCheck size={14} />, label: "Patents",  value: "1", sub: "Geo-Spatial Tracking and Location Obfuscation" },
+                { icon: <Database size={14} />,    label: "Internships", value: "3",  sub: "Experience in Research and Industry" },
                 { icon: <Layers size={14} />,      label: "B.Tech IT",      value: "9.00",  sub: "CGPA @ VIT" },
-                { icon: <Sparkles size={14} />,    label: "EasyLLM RAG",    value: "Offline", sub: "Zero cloud cost" },
+                { icon: <Sparkles size={14} />,    label: "Projects Deployed",    value: "10+", sub: "Spanning AI,Backend,DevOps" },
               ].map((m) => (
                 <div key={m.label} className="p-4 rounded-xl border border-surface-border bg-surface-muted/50 flex flex-col">
                   <div className="flex items-center gap-2 text-xs font-mono text-text-secondary mb-2">

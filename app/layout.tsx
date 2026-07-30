@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import CustomCursor from "@/components/ui/CustomCursor";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -76,7 +75,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-screen antialiased selection:bg-white/20 selection:text-white">
-        <CustomCursor />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

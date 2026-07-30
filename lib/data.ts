@@ -221,7 +221,7 @@ export const certifications: Certification[] = [
     name: "Oracle Certified Data Scientist",
     issuer: "Oracle Corporation",
     date: "Oct 2025",
-    link: "https://education.oracle.com/",
+    link: "https://drive.google.com/file/d/1aNbFo3jNAgfr-spPnge4JoaKcdNPvb-A/view?usp=drive_link",
   },
 ];
 
@@ -229,6 +229,7 @@ export const patents: Patent[] = [
   {
     title: "Distributed Edge-Based Wildlife Monitoring System With Spatial Data Obfuscation And Asynchronous Synchronization",
     status: "Published",
+    link: "#",
   },
 ];
 
